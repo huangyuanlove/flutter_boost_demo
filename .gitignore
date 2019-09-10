@@ -1,0 +1,11 @@
+*.iml
+.gradle
+/local.properties
+.idea
+gradle
+gradlew
+gradlew.bat
+flutter_module/.android
+flutter_module/.ios
+app/src/androidTest
+app/src/test
