@@ -21,10 +21,10 @@ public class PageRouter {
     public static boolean openPageByUrl(Context context, String url, Map<String, Object> params, int requestCode) {
         try {
             Uri uri = Uri.parse(url);
-            if(uri!=null){
-                if(params!=null && params.size()>0){
-                    for(Map.Entry<String,Object> entry : params.entrySet()){
-                       uri= uri.buildUpon().appendQueryParameter(entry.getKey(),entry.getValue().toString()).build();
+            if (uri != null) {
+                if (params != null && params.size() > 0) {
+                    for (Map.Entry<String, Object> entry : params.entrySet()) {
+                        uri = uri.buildUpon().appendQueryParameter(entry.getKey(), entry.getValue().toString()).build();
                     }
                 }
 
@@ -34,24 +34,8 @@ public class PageRouter {
                 context.startActivity(intent);
                 return true;
             }
+            return false;
 
-
-
-
-
-
-            if (url.startsWith(FLUTTER_PAGE_URL)) {
-                context.startActivity(new Intent(context, FlutterPageActivity.class));
-                return true;
-            } else if (url.startsWith(FLUTTER_FRAGMENT_PAGE_URL)) {
-                context.startActivity(new Intent(context, FlutterFragmentPageActivity.class));
-                return true;
-            } else if (url.startsWith(NATIVE_PAGE_URL)) {
-                context.startActivity(new Intent(context, NativePageActivity.class));
-                return true;
-            } else {
-                return false;
-            }
         } catch (Throwable t) {
             return false;
         }

@@ -13,6 +13,7 @@ import java.util.Map;
 
 import io.flutter.app.FlutterApplication;
 import io.flutter.embedding.engine.dart.DartExecutor;
+import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.view.FlutterMain;
 
 /**
@@ -41,6 +42,7 @@ public class MyApplication extends FlutterApplication {
 
             @Override
             public void openContainer(Context context, String url, Map<String, Object> urlParams, int requestCode, Map<String, Object> exts) {
+                //在flutter中调用FlutterBoost.singleton.open()方法，最终会走到这里进行处理
                 PageRouter.openPageByUrl(context,url,urlParams,requestCode);
             }
 
@@ -61,6 +63,12 @@ public class MyApplication extends FlutterApplication {
             public int whenEngineStart() {
                 return ANY_ACTIVITY_CREATED;
             }
+
+            @Override
+            public void registerPlugins(PluginRegistry registry) {
+                super.registerPlugins(registry);
+            }
         });
     }
+
 }
